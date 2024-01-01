@@ -7,7 +7,7 @@ from src.download_utils import get_image_url
 # Reference: https://stackoverflow.com/questions/54165439/what-are-the-exact-color-names-available-in-pils-imagedraw
 
 
-def show_colors(c):
+def show_colors(c: list[list[int]]) -> None:
     n = len(c)
 
     cols = NUM_COLORS

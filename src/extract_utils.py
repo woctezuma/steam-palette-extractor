@@ -5,7 +5,7 @@ from src.color_utils import extract_colors
 from src.constants import NUM_COLORS, PALETTE_FNAME
 
 
-def extract_from_scratch(test_fnames):
+def extract_from_scratch(test_fnames: list[str]) -> dict[str, torch.tensor]:
     # This extraction process takes ~ 20 minutes.
 
     pre_computed_palettes = torch.zeros(

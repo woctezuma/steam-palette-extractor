@@ -9,7 +9,7 @@ from PIL import Image
 
 
 def get_dominant_colors(
-    pil_img,
+    pil_img: Image,
     palette_size: int = 16,
     num_colors: int = 10,
 ) -> list[list[int]]:

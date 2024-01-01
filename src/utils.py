@@ -12,25 +12,25 @@ from src.constants import (
 from src.json_utils import load_json
 
 
-def get_app_ids(fname=APPID_FNAME):
+def get_app_ids(fname: str = APPID_FNAME) -> list[str]:
     return [str(app_id) for app_id in load_json(fname)]
 
 
-def get_test_fnames(image_folder, file_ext=".jpg"):
+def get_test_fnames(image_folder: str, file_ext: str = ".jpg"):
     return sorted(Path(image_folder).glob(f"*{file_ext}"))
 
 
-def get_filtered_app_ids(fname=FILTERED_APP_IDS_FNAME):
+def get_filtered_app_ids(fname: str = FILTERED_APP_IDS_FNAME) -> dict | list[str]:
     return load_json(fname)
 
 
-def get_pre_computed_palettes():
-    return torch.load(PALETTE_FNAME)
+def get_pre_computed_palettes(fname: str = PALETTE_FNAME) -> torch.tensor:
+    return torch.load(fname)
 
 
-def get_egs_solutions(fname=SOLUTIONS_FNAME):
+def get_egs_solutions(fname: str = SOLUTIONS_FNAME) -> dict | list[str]:
     return load_json(fname)
 
 
-def get_popular_appids():
-    return get_app_ids(POPULAR_APPIDS_FNAME)
+def get_popular_appids(fname: str = POPULAR_APPIDS_FNAME) -> list[str]:
+    return get_app_ids(fname)

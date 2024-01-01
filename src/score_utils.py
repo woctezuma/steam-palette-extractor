@@ -1,7 +1,11 @@
 import torch
 
 
-def to_score(minimal_distances, indices, params):
+def to_score(
+    minimal_distances: torch.tensor,
+    indices: torch.tensor,
+    params: dict,
+) -> float:
     factor = params["factor"]
     exponent = params["exponent"]
 
@@ -9,7 +13,11 @@ def to_score(minimal_distances, indices, params):
     return (minimal_distances * rank_weights).sum()
 
 
-def compute_distance_between_palettes(v: torch.tensor, w: torch.tensor, params: dict):
+def compute_distance_between_palettes(
+    v: torch.tensor,
+    w: torch.tensor,
+    params: dict,
+) -> float:
     pairwise_distances = torch.cdist(
         v.float(),
         w.float(),

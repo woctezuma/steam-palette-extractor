@@ -4,7 +4,7 @@ from src.constants import FILTERED_APP_IDS_FNAME, FILTERED_INDICES_FNAME
 from src.json_utils import save_json
 
 
-def prepare_filtered_files(app_ids, test_fnames):
+def prepare_filtered_files(app_ids: list[str], test_fnames: list[str]) -> None:
     filtered_indices = []
     filtered_app_ids = []
 
