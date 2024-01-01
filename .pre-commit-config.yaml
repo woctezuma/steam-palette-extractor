@@ -1,0 +1,40 @@
+files: \.(py|txt|yaml|yml)$
+default_stages: [commit, manual]
+repos:
+  - repo: https://github.com/astral-sh/ruff-pre-commit
+    rev: v0.1.9
+    hooks:
+      - id: ruff
+        args:
+          [
+            --fix,
+            --unsafe-fixes,
+            --target-version,
+            "py312",
+            --select,
+            "ALL",
+            --ignore,
+            "ANN,D,FBT001,FBT002,T201",
+          ]
+      - id: ruff-format
+
+  - repo: https://github.com/pre-commit/pre-commit-hooks
+    rev: v4.5.0
+    hooks:
+      - id: requirements-txt-fixer
+      - id: end-of-file-fixer
+      - id: trailing-whitespace
+
+  - repo: https://github.com/dosisod/refurb
+    rev: v1.26.0
+    hooks:
+    - id: refurb
+      args: [--python-version, "3.12"]
+      stages: [manual]
+
+  - repo: https://github.com/pre-commit/mirrors-mypy
+    rev: v1.8.0
+    hooks:
+    - id: mypy
+      additional_dependencies: [types-requests]
+      stages: [manual]
