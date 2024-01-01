@@ -1,4 +1,4 @@
-def to_steam_url(app_id, egs_solutions) -> str:
+def to_steam_url(egs_solutions: dict, app_id: str) -> str:
     elements = egs_solutions["image"]["steam"]
     return f"{elements['url']}{app_id}{elements['suffix']}"
 
