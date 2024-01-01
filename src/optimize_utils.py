@@ -1,3 +1,5 @@
+import torch
+
 from src.distance_utils import (
     compute_distances_with_all_the_palettes,
     get_ground_truth_rank,
@@ -7,12 +9,12 @@ from src.url_utils import from_gift_to_egs_url
 
 
 def process_every_gift(
-    egs_solutions,
-    pre_computed_palettes,
-    test_app_ids,
-    params,
-    verbose=False,
-):
+    egs_solutions: dict,
+    pre_computed_palettes: dict[str, torch.tensor],
+    test_app_ids: list[str],
+    params: dict,
+    verbose: bool = False,
+) -> list[int | None]:
     ground_truth_ranks = []
     for gift_index in range(len(egs_solutions["gift"])):
         gift = egs_solutions["gift"][gift_index]
