@@ -43,7 +43,7 @@ def extract_colors(path_or_url: str, num_colors: int = 10) -> list[list[int]]:
     return get_dominant_colors(pil_img, num_colors=num_colors)
 
 
-def to_hsv(r: int, g: int, b: int) -> tuple(int):
+def to_hsv(r: int, g: int, b: int) -> tuple[int, int, int]:
     # Reference: https://stackoverflow.com/a/37656972/376454
 
     h, s, v = rgb_to_hsv(r / 255, g / 255, b / 255)

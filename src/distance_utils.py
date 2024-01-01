@@ -49,7 +49,7 @@ def compute_distances_with_all_the_palettes(
 def get_ground_truth_rank(
     distance_dict: dict[str, float],
     ground_truth_app_id: None | int = None,
-) -> tuple(None | int, list[str]):
+) -> tuple[None | int, list[str]]:
     most_similar_app_ids = sorted(distance_dict, key=lambda x: distance_dict[x])
 
     if ground_truth_app_id:
