@@ -21,8 +21,7 @@ def process_every_gift(
 
         reference_colors = prepare_image(
             path_or_url,
-            params["use_hsv"],
-            params["change_coordinates"],
+            params,
             verbose=verbose,
         )
 

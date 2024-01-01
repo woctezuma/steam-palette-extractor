@@ -6,10 +6,10 @@ from src.constants import NUM_COLORS
 from src.display_utils import show_colors
 
 
-def prepare_image(path_or_url, use_hsv, change_coordinates, verbose=True):
+def prepare_image(path_or_url: str, params: dict, verbose: bool = True) -> torch.tensor:
     dominant_colors = extract_colors(path_or_url, num_colors=NUM_COLORS)
-    if use_hsv:
-        reference_colors = to_linear_hsv(dominant_colors, change_coordinates)
+    if params["use_hsv"]:
+        reference_colors = to_linear_hsv(dominant_colors, params["change_coordinates"])
     else:
         reference_colors = torch.tensor(dominant_colors)
 
