@@ -34,13 +34,15 @@ def show_colors(c: list[list[int]]) -> None:
 def display_results(
     most_similar_app_ids: list[str],
     distance_dict: dict[str, float],
+    max_num_displayed_images: int = MAX_NUM_DISPLAYED_IMAGES,
+    displayed_image_width: int = DISPLAYED_IMAGE_WIDTH,
 ) -> None:
     for i, app_id in enumerate(
-        most_similar_app_ids[:MAX_NUM_DISPLAYED_IMAGES],
+        most_similar_app_ids[:max_num_displayed_images],
         start=1,
     ):
         distance = distance_dict[app_id]
 
         path_or_url = get_image_url(app_id)
         print(f"\t{i}) appID: {app_id} ; distance: {distance:.2f} ; url: {path_or_url}")
-        media.show_image(media.read_image(path_or_url), width=DISPLAYED_IMAGE_WIDTH)
+        media.show_image(media.read_image(path_or_url), width=displayed_image_width)
