@@ -10,7 +10,7 @@ def to_score(
     exponent = params["exponent"]
 
     rank_weights = (1 + factor * indices) ** exponent
-    return (minimal_distances * rank_weights).sum()
+    return (minimal_distances * rank_weights).sum().item()
 
 
 def compute_distance_between_palettes(
