@@ -46,21 +46,40 @@ def compute_distances_with_all_the_palettes(
     return distance_dict
 
 
-def get_ground_truth_rank(
-    distance_dict: dict[str, float],
-    ground_truth_app_id: None | int = None,
-) -> tuple[None | int, list[str]]:
-    most_similar_app_ids = sorted(distance_dict, key=lambda x: distance_dict[x])
+def get_most_similar_app_ids(distance_dict: dict[str, float]) -> list[str]:
+    return sorted(distance_dict, key=lambda x: distance_dict[x])
 
+
+def get_ground_truth_rank(
+    ground_truth_app_id: None | int,
+    most_similar_app_ids: list[str],
+) -> None | int:
     if ground_truth_app_id:
         try:
             rank = most_similar_app_ids.index(str(ground_truth_app_id))
+            print(
+                f"Ground truth (appID = {ground_truth_app_id}) is ranked n°{rank}.",
+            )
         except ValueError:
             rank = None
-        print(
-            f"Ground truth (appID = {ground_truth_app_id}) is ranked n°{rank}.",
-        )
+            print(
+                f"Ground truth (appID = {ground_truth_app_id}) is not in the ranking.",
+            )
     else:
         rank = None
 
-    return rank, most_similar_app_ids
+    return rank
+
+
+def get_ground_truth_ranks(
+    ground_truth_app_ids: list[None | int],
+    most_similar_app_ids: list[str],
+) -> list[int]:
+    ground_truth_ranks = []
+    for app_id in ground_truth_app_ids:
+        rank = get_ground_truth_rank(app_id, most_similar_app_ids)
+
+        if rank:
+            ground_truth_ranks.append(rank)
+
+    return ground_truth_ranks

@@ -2,7 +2,8 @@ import torch
 
 from src.distance_utils import (
     compute_distances_with_all_the_palettes,
-    get_ground_truth_rank,
+    get_ground_truth_ranks,
+    get_most_similar_app_ids,
 )
 from src.image_utils import prepare_image
 from src.url_utils import from_gift_to_egs_url
@@ -15,7 +16,7 @@ def process_every_gift(
     params: dict,
     verbose: bool = False,
 ) -> list[int | None]:
-    ground_truth_ranks = []
+    gift_ranks = []
     for gift_index in range(len(egs_solutions["gift"])):
         gift = egs_solutions["gift"][gift_index]
         path_or_url = from_gift_to_egs_url(egs_solutions, gift)
@@ -35,14 +36,14 @@ def process_every_gift(
             verbose=verbose,
         )
 
-        appid_index = 0
-        ground_truth_app_id = gift["appids"][appid_index]
+        most_similar_app_ids = get_most_similar_app_ids(distance_dict)
 
-        ground_truth_rank, most_similar_app_ids = get_ground_truth_rank(
-            distance_dict,
-            ground_truth_app_id,
+        ground_truth_ranks = get_ground_truth_ranks(
+            gift["appids"],
+            most_similar_app_ids,
         )
+        gift_rank = min(ground_truth_ranks) if ground_truth_ranks else None
 
-        ground_truth_ranks.append(ground_truth_rank)
+        gift_ranks.append(gift_rank)
 
-    return ground_truth_ranks
+    return gift_ranks
