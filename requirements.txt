@@ -1,3 +1,4 @@
 img2dataset
 mediapy
+optuna
 tqdm
