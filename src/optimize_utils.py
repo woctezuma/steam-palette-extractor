@@ -12,6 +12,7 @@ from src.url_utils import from_gift_to_egs_url
 def process_every_gift(
     egs_solutions: dict,
     pre_computed_palettes: dict[str, torch.tensor],
+    pre_computed_app_ids: list[str],
     test_app_ids: list[str],
     params: dict,
     verbose: bool = False,
@@ -31,6 +32,7 @@ def process_every_gift(
         distance_dict = compute_distances_with_all_the_palettes(
             reference_colors,
             pre_computed_palettes,
+            pre_computed_app_ids,
             test_app_ids,
             params,
             verbose=verbose,
