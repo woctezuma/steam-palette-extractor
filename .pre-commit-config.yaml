@@ -14,7 +14,7 @@ repos:
             --select,
             "ALL",
             --ignore,
-            "ANN,D,FBT001,FBT002,T201",
+            "ANN,D,FBT001,FBT002,PLR0913,T201",
           ]
       - id: ruff-format
 
