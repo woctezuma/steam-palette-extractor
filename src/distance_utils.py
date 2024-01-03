@@ -59,7 +59,7 @@ def get_ground_truth_rank(
 ) -> None | int:
     if ground_truth_app_id:
         try:
-            rank = most_similar_app_ids.index(str(ground_truth_app_id))
+            rank = 1 + most_similar_app_ids.index(str(ground_truth_app_id))
             print(
                 f"Ground truth (appID = {ground_truth_app_id}) is ranked n°{rank}.",
             )
