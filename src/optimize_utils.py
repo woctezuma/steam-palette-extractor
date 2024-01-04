@@ -10,7 +10,7 @@ from src.url_utils import from_gift_to_egs_url
 
 
 def get_subset_of_pre_computed_data(
-    pre_computed_palettes: dict[str, torch.tensor],
+    pre_computed_palettes: torch.tensor,
     pre_computed_app_ids: list[str],
     test_app_ids: list[str],
 ):
@@ -31,7 +31,7 @@ def get_subset_of_pre_computed_data(
 
 def process_every_gift(
     egs_solutions: dict,
-    pre_computed_palettes: dict[str, torch.tensor],
+    pre_computed_palettes: torch.tensor,
     pre_computed_app_ids: list[str],
     test_app_ids: list[str],
     params: dict,

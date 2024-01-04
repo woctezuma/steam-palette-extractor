@@ -9,7 +9,7 @@ from src.score_utils import compute_distance_between_palettes
 
 def compute_distances_with_all_the_palettes(
     reference_colors: torch.tensor,
-    pre_computed_palettes: dict[str, torch.tensor],
+    pre_computed_palettes: torch.tensor,
     pre_computed_app_ids: list[str],
     params: dict,
     verbose: bool = True,
