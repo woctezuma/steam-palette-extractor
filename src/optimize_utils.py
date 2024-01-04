@@ -9,6 +9,26 @@ from src.image_utils import prepare_image
 from src.url_utils import from_gift_to_egs_url
 
 
+def get_subset_of_pre_computed_data(
+    pre_computed_palettes: dict[str, torch.tensor],
+    pre_computed_app_ids: list[str],
+    test_app_ids: list[str],
+):
+    palettes_subset = {}
+    app_ids_subset = []
+
+    for color_palette, app_id in zip(
+        pre_computed_palettes,
+        pre_computed_app_ids,
+        strict=False,
+    ):
+        if app_id in test_app_ids:
+            palettes_subset[app_id] = color_palette
+            app_ids_subset.append(app_id)
+
+    return palettes_subset, app_ids_subset
+
+
 def process_every_gift(
     egs_solutions: dict,
     pre_computed_palettes: dict[str, torch.tensor],
@@ -17,6 +37,12 @@ def process_every_gift(
     params: dict,
     verbose: bool = False,
 ) -> list[int | None]:
+    palettes_subset, app_ids_subset = get_subset_of_pre_computed_data(
+        pre_computed_palettes,
+        pre_computed_app_ids,
+        test_app_ids,
+    )
+
     gift_ranks = []
     for gift_index in range(len(egs_solutions["gift"])):
         gift = egs_solutions["gift"][gift_index]
@@ -31,9 +57,8 @@ def process_every_gift(
 
         distance_dict = compute_distances_with_all_the_palettes(
             reference_colors,
-            pre_computed_palettes,
-            pre_computed_app_ids,
-            test_app_ids,
+            palettes_subset,
+            app_ids_subset,
             params,
             verbose=verbose,
         )

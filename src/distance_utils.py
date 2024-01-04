@@ -11,7 +11,6 @@ def compute_distances_with_all_the_palettes(
     reference_colors: torch.tensor,
     pre_computed_palettes: dict[str, torch.tensor],
     pre_computed_app_ids: list[str],
-    test_app_ids: list[str],
     params: dict,
     verbose: bool = True,
 ) -> dict[str, float]:
@@ -19,8 +18,6 @@ def compute_distances_with_all_the_palettes(
     distance_dict = {}
 
     for i, app_id in tqdm(enumerate(pre_computed_app_ids)):
-        if app_id not in test_app_ids:
-            continue
         dominant_colors = pre_computed_palettes[i]
 
         if params["use_hsv"]:
