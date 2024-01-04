@@ -36,15 +36,14 @@ def compute_distances_with_all_the_palettes(
 
         distance_dict[app_id] = distance
 
-        if best_distance is None or distance < best_distance:
+        if verbose and (best_distance is None or distance < best_distance):
             best_distance = distance
 
-            if verbose:
-                url = get_image_url(app_id)
-                print(
-                    f"\tappID: {app_id} ; distance: {distance:.2f} ; url: {url}",
-                )
-                media.show_image(media.read_image(url))
+            url = get_image_url(app_id)
+            print(
+                f"\tappID: {app_id} ; distance: {distance:.2f} ; url: {url}",
+            )
+            media.show_image(media.read_image(url))
 
     return distance_dict
 
