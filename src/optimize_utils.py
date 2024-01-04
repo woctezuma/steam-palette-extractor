@@ -13,7 +13,7 @@ def get_subset_of_pre_computed_data(
     pre_computed_palettes: torch.tensor,
     pre_computed_app_ids: list[str],
     test_app_ids: list[str],
-):
+) -> tuple[torch.tensor, list[str]]:
     palettes_subset = {}
     app_ids_subset = []
 
