@@ -17,7 +17,7 @@ Run [`extract_steam_palette.ipynb`][colab-notebook]
 
 <!-- Definitions -->
 
-[img-cover]: <https://github.com/woctezuma/steam-palette-extractor/wiki/img/cover.png>
+[img-cover]: <https://github.com/woctezuma/steam-palette-extractor/wiki/img/cover.jpg>
 [colab-notebook]: <https://colab.research.google.com/github/woctezuma/steam-palette-extractor/blob/main/extract_steam_palette.ipynb>
 [colab-badge]: <https://colab.research.google.com/assets/colab-badge.svg>
 [steam-popular-appids]: <https://github.com/woctezuma/steam-popular-appids>
