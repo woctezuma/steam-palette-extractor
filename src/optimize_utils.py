@@ -35,11 +35,15 @@ def process_every_gift(
     params: dict,
     verbose: bool = False,
 ) -> list[int | None]:
-    palettes_subset, app_ids_subset = get_subset_of_pre_computed_data(
-        pre_computed_palettes,
-        pre_computed_app_ids,
-        test_app_ids,
-    )
+    if test_app_ids:
+        palettes_subset, app_ids_subset = get_subset_of_pre_computed_data(
+            pre_computed_palettes,
+            pre_computed_app_ids,
+            test_app_ids,
+        )
+    else:
+        palettes_subset = pre_computed_palettes
+        app_ids_subset = pre_computed_app_ids
 
     gift_ranks = []
     for gift_index in range(len(egs_solutions["gift"])):
