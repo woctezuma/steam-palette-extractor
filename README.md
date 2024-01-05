@@ -9,6 +9,10 @@ This repository contains Python code to find the dominant / most common colors i
 Run [`extract_steam_palette.ipynb`][colab-notebook]
 [![Open In Colab][colab-badge]][colab-notebook]
 
+## Results
+
+A benchmark of the parameters used for the palette distance is shown [on the Wiki][benchmark-wiki].
+
 ## References
 
 - [`woctezuma/steam-popular-appids`][steam-popular-appids]: popular Steam appIDs,
@@ -20,6 +24,7 @@ Run [`extract_steam_palette.ipynb`][colab-notebook]
 [img-cover]: <https://github.com/woctezuma/steam-palette-extractor/wiki/img/cover.jpg>
 [colab-notebook]: <https://colab.research.google.com/github/woctezuma/steam-palette-extractor/blob/main/extract_steam_palette.ipynb>
 [colab-badge]: <https://colab.research.google.com/assets/colab-badge.svg>
+[benchmark-wiki]: <https://github.com/woctezuma/steam-palette-extractor/wiki>
 [steam-popular-appids]: <https://github.com/woctezuma/steam-popular-appids>
 [steam-store-snapshots]: <https://github.com/woctezuma/steam-store-snapshots>
 [stackoverflow]: <https://stackoverflow.com/questions/3241929/python-find-dominant-most-common-color-in-an-image/61730849#61730849>
