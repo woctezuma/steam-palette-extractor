@@ -75,9 +75,9 @@ def my_objective(
 
 def run_study(
     objective,
-    study_fname: str = "",
     num_trials: int = NUM_TRIALS,
     timeout_in_seconds: int = TIMEOUT_IN_SECONDS,
+    study_fname: str = "",
 ):
     if study_fname and Path(study_fname).exists():
         study = joblib.load(study_fname)
