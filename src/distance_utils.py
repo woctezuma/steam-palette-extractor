@@ -7,6 +7,7 @@ def get_most_similar_app_ids(
     topk: int = 0,
 ) -> tuple[list[str], list[int]]:
     if topk > 0:
+        topk = min(len(distances), int(topk))
         indices = torch.topk(distances, k=topk, largest=False).indices
     else:
         indices = torch.argsort(distances)
