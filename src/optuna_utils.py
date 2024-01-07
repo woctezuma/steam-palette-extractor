@@ -74,6 +74,7 @@ def objective(
 
 
 def run_study(
+    objective,
     study_fname: str = "",
     num_trials: int = NUM_TRIALS,
     timeout_in_seconds: int = TIMEOUT_IN_SECONDS,
