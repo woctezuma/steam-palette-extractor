@@ -3,6 +3,7 @@ from colorsys import rgb_to_hsv
 import mediapy as media
 import torch
 from PIL import Image
+from tqdm import tqdm
 
 # Reference:
 # https://stackoverflow.com/questions/3241929/python-find-dominant-most-common-color-in-an-image/61730849#61730849
@@ -50,25 +51,51 @@ def to_hsv(r: int, g: int, b: int) -> tuple[int, int, int]:
     return int(h * 255), int(s * 255), int(v * 255)
 
 
+def to_hsv_sequential(
+    palettes: torch.tensor,
+) -> torch.tensor:
+    v_aggregated = None
+    for dominant_colors in tqdm(palettes):
+        v = torch.tensor([to_hsv(*rgb) for rgb in dominant_colors]).unsqueeze(dim=0)
+
+        if v_aggregated is None:
+            v_aggregated = v
+        else:
+            v_aggregated = torch.cat((v_aggregated, v), dim=0)
+
+    return v_aggregated
+
+
+def change_hsv_coordinates_vectorized(
+    palettes: torch.tensor,
+) -> torch.tensor:
+    # Convert the HSV values before computing the distance!
+    # https://stackoverflow.com/a/39113477/376454
+
+    v = palettes.float() / 255
+
+    hue = v[:, :, 0]
+    saturation = v[:, :, 1]
+
+    theta = 2 * torch.pi * hue
+    radius = saturation
+
+    x = radius * torch.cos(theta)
+    y = radius * torch.sin(theta)
+
+    v[:, :, 0] = x
+    v[:, :, 1] = y
+
+    return v
+
+
 def to_linear_hsv(
     dominant_colors: list[list[int]],
     change_coordinates: bool = True,
 ) -> torch.tensor:
-    v = torch.tensor([to_hsv(*rgb) for rgb in dominant_colors])
-
-    # Caveat: convert the HSV values before computing the distance!
-    # https://stackoverflow.com/a/39113477/376454
+    v = to_hsv_sequential(dominant_colors)
 
     if change_coordinates:
-        v = v.float() / 255
-
-        theta = 2 * torch.pi * v[:, 0]
-        radius = v[:, 1]
-
-        x = radius * torch.cos(theta)
-        y = radius * torch.sin(theta)
-
-        v[:, 0] = x
-        v[:, 1] = y
+        v = change_hsv_coordinates_vectorized(v)
 
     return v

@@ -17,17 +17,16 @@ def compute_distances_with_all_the_palettes(
     best_distance = None
     distance_dict = {}
 
+    if params["use_hsv"]:
+        pre_computed_palettes = to_linear_hsv(
+            pre_computed_palettes,
+            params["change_coordinates"],
+        )
+
     for i, app_id in tqdm(enumerate(pre_computed_app_ids)):
-        dominant_colors = pre_computed_palettes[i]
-
-        if params["use_hsv"]:
-            test_colors = to_linear_hsv(dominant_colors, params["change_coordinates"])
-        else:
-            test_colors = torch.tensor(dominant_colors)
-
         distance = compute_distance_between_palettes(
             reference_colors,
-            test_colors,
+            pre_computed_palettes[i],
             params,
         )
 
