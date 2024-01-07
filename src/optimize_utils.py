@@ -52,7 +52,8 @@ def process_every_gift(
     for gift_index in range(len(egs_solutions["gift"])):
         gift = egs_solutions["gift"][gift_index]
         path_or_url = from_gift_to_egs_url(egs_solutions, gift)
-        print(f"{gift['index']}) {path_or_url}")
+        if verbose:
+            print(f"{gift['index']}) {path_or_url}")
 
         reference_colors = prepare_image(
             path_or_url,
@@ -75,6 +76,7 @@ def process_every_gift(
         ground_truth_ranks = get_ground_truth_ranks(
             gift["appids"],
             most_similar_app_ids,
+            verbose,
         )
         gift_rank = min(ground_truth_ranks) if ground_truth_ranks else None
 

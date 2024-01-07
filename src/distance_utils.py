@@ -16,18 +16,21 @@ def get_most_similar_app_ids(
 def get_ground_truth_rank(
     ground_truth_app_id: None | int,
     most_similar_app_ids: list[str],
+    verbose=True,
 ) -> None | int:
     if ground_truth_app_id:
         try:
             rank = 1 + most_similar_app_ids.index(str(ground_truth_app_id))
-            print(
-                f"Ground truth (appID = {ground_truth_app_id}) is ranked n°{rank}.",
-            )
+            if verbose:
+                print(
+                    f"Ground truth (appID = {ground_truth_app_id}) is ranked n°{rank}.",
+                )
         except ValueError:
             rank = None
-            print(
-                f"Ground truth (appID = {ground_truth_app_id}) is not in the ranking.",
-            )
+            if verbose:
+                print(
+                    f"Ground truth (appID = {ground_truth_app_id}) is not ranked.",
+                )
     else:
         rank = None
 
@@ -37,10 +40,11 @@ def get_ground_truth_rank(
 def get_ground_truth_ranks(
     ground_truth_app_ids: list[None | int],
     most_similar_app_ids: list[str],
+    verbose=True,
 ) -> list[int]:
     ground_truth_ranks = []
     for app_id in ground_truth_app_ids:
-        rank = get_ground_truth_rank(app_id, most_similar_app_ids)
+        rank = get_ground_truth_rank(app_id, most_similar_app_ids, verbose)
 
         if rank:
             ground_truth_ranks.append(rank)
