@@ -78,8 +78,11 @@ def run_study(
     num_trials: int = NUM_TRIALS,
     timeout_in_seconds: int = TIMEOUT_IN_SECONDS,
     study_fname: str = "",
+    previous_study=None,
 ):
-    if study_fname and Path(study_fname).exists():
+    if previous_study is not None:
+        study = previous_study
+    elif study_fname and Path(study_fname).exists():
         study = joblib.load(study_fname)
         # https://optuna.readthedocs.io/en/stable/faq.html#how-can-i-save-and-resume-studies
         print("Best trial until now:")
