@@ -1,11 +1,11 @@
 import torch
 
 from src.distance_utils import (
-    compute_distances_with_all_the_palettes,
     get_ground_truth_ranks,
     get_most_similar_app_ids,
 )
 from src.image_utils import prepare_image
+from src.score_utils import compute_distance_between_palettes
 from src.url_utils import from_gift_to_egs_url
 
 
@@ -35,6 +35,9 @@ def process_every_gift(
     params: dict,
     verbose: bool = False,
 ) -> list[int | None]:
+    # NB: we assume that the pre-computed palettes have
+    # already been processed with to_linear_hsv() if needed.
+
     if test_app_ids:
         palettes_subset, app_ids_subset = get_subset_of_pre_computed_data(
             pre_computed_palettes,
@@ -57,15 +60,17 @@ def process_every_gift(
             verbose=verbose,
         )
 
-        distance_dict = compute_distances_with_all_the_palettes(
+        distance = compute_distance_between_palettes(
             reference_colors,
             palettes_subset,
-            app_ids_subset,
             params,
-            verbose=verbose,
         )
 
-        most_similar_app_ids = get_most_similar_app_ids(distance_dict)
+        most_similar_app_ids = get_most_similar_app_ids(
+            distance,
+            app_ids_subset,
+            params["topk"],
+        )
 
         ground_truth_ranks = get_ground_truth_ranks(
             gift["appids"],

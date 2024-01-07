@@ -14,10 +14,11 @@ MAX_NUM_DISPLAYED_IMAGES: int = 25
 DISPLAYED_IMAGE_WIDTH: int = 300
 
 
-def get_default_params() -> dict[str, float | bool]:
+def get_default_params() -> dict[str, float | int | bool]:
     return {
         "exponent": 1.0,
         "factor": 1.0,
+        "topk": 0,
         "use_hsv": True,
         "change_coordinates": True,
     }
