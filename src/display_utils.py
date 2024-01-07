@@ -1,4 +1,5 @@
 import mediapy as media
+import torch
 from PIL import Image, ImageDraw
 
 from src.constants import DISPLAYED_IMAGE_WIDTH, MAX_NUM_DISPLAYED_IMAGES, NUM_COLORS
@@ -33,7 +34,8 @@ def show_colors(c: list[list[int]]) -> None:
 
 def display_results(
     most_similar_app_ids: list[str],
-    distance_dict: dict[str, float],
+    indices: list[int],
+    distances: torch.tensor,
     max_num_displayed_images: int = MAX_NUM_DISPLAYED_IMAGES,
     displayed_image_width: int = DISPLAYED_IMAGE_WIDTH,
 ) -> None:
@@ -41,7 +43,7 @@ def display_results(
         most_similar_app_ids[:max_num_displayed_images],
         start=1,
     ):
-        distance = distance_dict[app_id]
+        distance = distances[indices[i]]
 
         path_or_url = get_image_url(app_id)
         print(f"\t{i}) appID: {app_id} ; distance: {distance:.2f} ; url: {path_or_url}")
