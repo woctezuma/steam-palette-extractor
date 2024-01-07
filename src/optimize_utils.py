@@ -14,14 +14,13 @@ def get_subset_of_pre_computed_data(
     pre_computed_app_ids: list[str],
     test_app_ids: list[str],
 ) -> tuple[torch.tensor, list[str]]:
-    indices_subet = []
-    app_ids_subset = []
+    # Reference: https://stackoverflow.com/a/23529016/376454
+    temporary_set = frozenset(test_app_ids)
+    indices_subet = [
+        i for i, app_id in enumerate(pre_computed_app_ids) if app_id in temporary_set
+    ]
 
-    for i, app_id in enumerate(pre_computed_app_ids):
-        if app_id in test_app_ids:
-            indices_subet.append(i)
-            app_ids_subset.append(app_id)
-
+    app_ids_subset = [pre_computed_app_ids[i] for i in indices_subet]
     palettes_subset = pre_computed_palettes[indices_subet, :]
 
     return palettes_subset, app_ids_subset
