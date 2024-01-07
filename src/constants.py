@@ -8,7 +8,9 @@ IMG_FOLDER: str = "steam_images"
 IMG_NAME: str = "capsule_616x353.jpg"
 
 NUM_COLORS: int = 8
-PALETTE_FNAME: str = f"steam_palette_{NUM_COLORS}.pth"
+PALETTE_BASE_NAME: str = f"steam_palette_{NUM_COLORS}"
+PALETTE_FNAME: str = f"{PALETTE_BASE_NAME}.pth"
+HSV_PALETTE_FNAME: str = f"{PALETTE_BASE_NAME}_hsv.pth"
 
 MAX_NUM_DISPLAYED_IMAGES: int = 25
 DISPLAYED_IMAGE_WIDTH: int = 300
