@@ -12,7 +12,7 @@ NUM_TRIALS = 100
 TIMEOUT_IN_SECONDS = 3600
 
 
-def objective(
+def my_objective(
     trial,
     egs_solutions: dict,
     pre_computed_palettes: torch.tensor,
