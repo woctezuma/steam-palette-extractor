@@ -8,7 +8,6 @@ from optuna.trial import TrialState
 from src.constants import get_default_params
 from src.optimize_utils import process_every_gift
 
-STUDY_FNAME = "study_steam_palette.pkl"
 NUM_TRIALS = 100
 TIMEOUT_IN_SECONDS = 3600
 
@@ -75,11 +74,11 @@ def objective(
 
 
 def run_study(
-    study_fname: str = STUDY_FNAME,
+    study_fname: str = "",
     num_trials: int = NUM_TRIALS,
     timeout_in_seconds: int = TIMEOUT_IN_SECONDS,
 ):
-    if Path(study_fname).exists():
+    if study_fname and Path(study_fname).exists():
         study = joblib.load(study_fname)
         # https://optuna.readthedocs.io/en/stable/faq.html#how-can-i-save-and-resume-studies
         print("Best trial until now:")
@@ -93,6 +92,7 @@ def run_study(
     study.optimize(objective, n_trials=num_trials, timeout=timeout_in_seconds)
     print(f"Best params is {study.best_params} with value {study.best_value}")
 
-    joblib.dump(study, study_fname)
+    if study_fname:
+        joblib.dump(study, study_fname)
 
     return study
