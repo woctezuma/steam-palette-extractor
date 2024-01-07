@@ -54,8 +54,10 @@ def to_hsv(r: int, g: int, b: int) -> tuple[int, int, int]:
 def to_hsv_sequential(
     palettes: torch.tensor,
 ) -> torch.tensor:
+    palette_iterator = tqdm(palettes) if len(palettes) > 1 else palettes
+
     v_aggregated = None
-    for dominant_colors in tqdm(palettes):
+    for dominant_colors in palette_iterator:
         v = torch.tensor([to_hsv(*rgb) for rgb in dominant_colors]).unsqueeze(dim=0)
 
         if v_aggregated is None:
