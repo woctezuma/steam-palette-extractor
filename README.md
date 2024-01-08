@@ -27,11 +27,13 @@ A benchmark of the parameters used for the palette distance is shown [on the Wik
   - Mean Pairwise Distance [1, 2]
   - Wikipedia: [Hausdorff distance][wiki-hausdorff] [2]
   - Wikipedia: [Modified Hausdorff "distance" (MHD)][wiki-hausdorff-modified] [2, 3] (in French):
-    - where the sup is replaced by an average,
+    - which is a modification where the **sup** is replaced by an **average**,
     - which is not actually a distance as it does not exhibit the triangle inequality property,
-  - Minimum Color Difference (MCD) [1, 2], which is a modification of the Hausdorff distance where the sup/max is replaced by an average,
-  - In retrospect, in my code, the distance between palettes is assessed by a modification of the Hausdorff distance where the sup/max is replaced by a sum, or a weighted sum depending on the parameters.
-    **NB**: This is equivalent to using an average (as in MCD), or a weighted average, as the number of colors in each palette, i.e. the cardinality of each set, is constant.
+  - Minimum Color Difference (MCD) [1, 2]:
+    - which is a modification of the Hausdorff distance where the **sup and max** are replaced by an **average**,
+  - In retrospect, in my code, the distance between palettes is assessed by:
+    - a modification of the Hausdorff distance where the **sup and max** are replaced by a (possibly weighted) **sum**,
+    - **NB**: Using a sum is equivalent to using an average, as the number of colors in each palette, i.e. the cardinality of each set, is constant.
 - Articles:
   - [1] Pan, Qianqian, et al. [*Comparative Evaluation of Color Differences between Color Palettes*][paper-pan]. Color and Imaging Conference 2018.
   - [2] Kim, Suzi, et al. [*Dynamic Closest Color Warping to Sort and Compare Palettes*][paper-DCCW]. [SIGGRAPH][siggraph-DCCW] 2021. ([code][github-DCCW])
