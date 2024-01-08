@@ -32,8 +32,8 @@ A benchmark of the parameters used for the palette distance is shown [on the Wik
   - Minimum Color Difference (MCD) [1, 2]:
     - which is a modification of the Hausdorff distance where the **sup and max** are replaced by an **average**,
   - In retrospect, in my code, the distance between palettes is assessed by:
-    - a modification of the Hausdorff distance where the **sup and max** are replaced by a (possibly weighted) **sum**,
-    - **NB**: Using a sum is equivalent to using an average, as the number of colors in each palette, i.e. the cardinality of each set, is constant.
+    - a modification of the Hausdorff distance where the **sup and max** are replaced by a (weighted) **sum**,
+    - **NB**: Using a sum or an average is equivalent, as the number of colors in each palette, i.e. the cardinality of each set, is constant.
 - Articles:
   - [1] Pan, Qianqian, et al. [*Comparative Evaluation of Color Differences between Color Palettes*][paper-pan]. Color and Imaging Conference 2018.
   - [2] Kim, Suzi, et al. [*Dynamic Closest Color Warping to Sort and Compare Palettes*][paper-DCCW]. [SIGGRAPH][siggraph-DCCW] 2021. ([code][github-DCCW])
