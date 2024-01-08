@@ -17,8 +17,11 @@ def get_app_ids(fname: str = APPID_FNAME) -> list[str]:
     return [str(app_id) for app_id in load_json(fname)]
 
 
-def get_test_fnames(image_folder: str, file_ext: str = ".jpg"):
-    return sorted(Path(image_folder).glob(f"*{file_ext}"))
+def get_test_fnames(image_folder: str, file_ext: str = ".jpg", verbose=True):
+    test_fnames = sorted(Path(image_folder).glob(f"*{file_ext}"))
+    if verbose:
+        print(f"#images = {len(test_fnames)}")
+    return test_fnames
 
 
 def get_filtered_app_ids(fname: str = FILTERED_APP_IDS_FNAME) -> dict | list[str]:
