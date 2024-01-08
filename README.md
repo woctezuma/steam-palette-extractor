@@ -18,6 +18,7 @@ A benchmark of the parameters used for the palette distance is shown [on the Wik
 - [`woctezuma/steam-popular-appids`][steam-popular-appids]: popular Steam appIDs,
 - [`woctezuma/steam-store-snapshots`][steam-store-snapshots]: a comprehensive list of appIDs downloaded in January 2021,
 - [Stack Overflow][stackoverflow]: different approaches to extract the palette of an image.
+- Kim, Suzi, and Sunghee Choi. [*Dynamic Closest Color Warping to Sort and Compare Palettes*][paper-DCCW]: <https://doi.org/10.1145/3450626.3459776>. SIGGRAPH 2021. ([code][github-DCCW])
 
 <!-- Definitions -->
 
@@ -28,3 +29,5 @@ A benchmark of the parameters used for the palette distance is shown [on the Wik
 [steam-popular-appids]: <https://github.com/woctezuma/steam-popular-appids>
 [steam-store-snapshots]: <https://github.com/woctezuma/steam-store-snapshots>
 [stackoverflow]: <https://stackoverflow.com/questions/3241929/python-find-dominant-most-common-color-in-an-image/61730849#61730849>
+[paper-DCCW]: <https://doi.org/10.1145/3450626.3459776>
+[github-DCCW]: <https://github.com/SuziKim/DCCW>
