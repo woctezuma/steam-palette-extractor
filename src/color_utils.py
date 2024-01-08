@@ -1,6 +1,7 @@
 from colorsys import rgb_to_hsv
 
 import mediapy as media
+import skimage as ski
 import torch
 from PIL import Image
 from tqdm import tqdm
@@ -51,14 +52,30 @@ def to_hsv(r: int, g: int, b: int) -> tuple[int, int, int]:
     return int(h * 255), int(s * 255), int(v * 255)
 
 
-def to_hsv_sequential(
+def to_color_space(rgb, output_color_space="rgb"):
+    if output_color_space.endswith("lab"):
+        return ski.color.rgb2lab(rgb / 255)
+    if output_color_space.endswith("luv"):
+        return ski.color.rgb2luv(rgb / 255)
+    if output_color_space in ["hsv", "hsl"]:
+        return to_hsv(*rgb)
+    return rgb
+
+
+def to_color_space_sequential(
     palettes: torch.tensor,
+    output_color_space: str = "hsv",
 ) -> torch.tensor:
     palette_iterator = tqdm(palettes) if len(palettes) > 1 else palettes
 
     v_aggregated = None
     for dominant_colors in palette_iterator:
-        v = torch.tensor([to_hsv(*rgb) for rgb in dominant_colors]).unsqueeze(dim=0)
+        v = torch.tensor(
+            [
+                to_color_space(rgb, output_color_space=output_color_space)
+                for rgb in dominant_colors
+            ],
+        ).unsqueeze(dim=0)
 
         if v_aggregated is None:
             v_aggregated = v
@@ -66,6 +83,12 @@ def to_hsv_sequential(
             v_aggregated = torch.cat((v_aggregated, v), dim=0)
 
     return v_aggregated
+
+
+def to_hsv_sequential(
+    palettes: torch.tensor,
+) -> torch.tensor:
+    return to_color_space_sequential(palettes, output_color_space="hsv")
 
 
 def change_hsv_coordinates_vectorized(
