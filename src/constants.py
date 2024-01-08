@@ -17,6 +17,20 @@ CIELUV_PALETTE_FNAME: str = f"{PALETTE_BASE_NAME}_luv.pth"
 MAX_NUM_DISPLAYED_IMAGES: int = 25
 DISPLAYED_IMAGE_WIDTH: int = 300
 
+COLOR_SPACES = [
+    "rgb",
+    "hsv",
+    "linear_hsv",
+    "cielab",
+    "cieluv",
+]
+
+PALETTE_DISTANCES = [
+    "sum_pairwise_distances",
+    "hausdorff_distance",
+    "custom_hausdorff_distance",
+]
+
 
 def get_default_params() -> dict[str, float | int | bool]:
     return {
