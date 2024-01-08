@@ -20,7 +20,7 @@ A benchmark of the parameters used for the palette distance is shown [on the Wik
 - [Stack Overflow][stackoverflow]: different approaches to extract the palette of an image.
 - Compare colors:
   - Wikipedia: [Red, Green, Blue (RGB)][wiki-rgb]
-  - Wikipedia: [Hue, Saturation, Value (HSV)][wiki-hsv]
+  - Wikipedia: [Hue, Saturation, Value (HSV)][wiki-hsv] **Caveat**: this is a cylindrical-coordinate representation!
   - Wikipedia: [CIELAB color space (L*a*b*)][wiki-cielab]
   - Wikipedia: [CIELUV color space (L*u*v*)][wiki-cieluv]
 - Compare palettes, i.e. ordered lists of a few colors:
