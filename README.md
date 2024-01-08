@@ -32,7 +32,7 @@ A benchmark of the parameters used for the palette distance is shown [on the Wik
   - Minimum Color Difference [1, 2], which is a modification of the Hausdorff distance where the sup/max is replaced by an average,
   - In retrospect, in my code, the distance between palettes is assessed by a modification of the Hausdorff distance where the sup/max is replaced by a sum, or a weighted sum depending on the parameters.
 - Articles:
-  - [1] Pan, Qianqian, et al. [*Comparative evaluation of color differences between color palettes*][paper-pan]. Color and Imaging Conference 2018.
+  - [1] Pan, Qianqian, et al. [*Comparative Evaluation of Color Differences between Color Palettes*][paper-pan]. Color and Imaging Conference 2018.
   - [2] Kim, Suzi, et al. [*Dynamic Closest Color Warping to Sort and Compare Palettes*][paper-DCCW]. SIGGRAPH 2021. ([code][github-DCCW])
   - [3] Dubuisson, M-P., et al. [*A modified Hausdorff distance for object matching*][paper-mhd]. ICPR 1994.
 
