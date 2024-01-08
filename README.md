@@ -26,7 +26,9 @@ A benchmark of the parameters used for the palette distance is shown [on the Wik
 - Compare palettes, i.e. ordered lists of a few colors:
   - Mean Pairwise Distance [1, 2]
   - Wikipedia: [Hausdorff distance][wiki-hausdorff] [2]
-  - Wikipedia: [Modified Hausdorff distance (MHD)][wiki-hausdorff-modified] [2]
+  - Wikipedia: [Modified Hausdorff "distance" (MHD)][wiki-hausdorff-modified] [2] (in French):
+    - where the sup is replaced by an average,
+    - which is not actually a distance as it does not exhibit the triangle inequality property,
   - Minimum Color Difference [1, 2], which is a modification of the Hausdorff distance where the sup/max is replaced by an average,
   - In retrospect, in my code, the distance between palettes is assessed by a modification of the Hausdorff distance where the sup/max is replaced by a sum.
 - Articles:
