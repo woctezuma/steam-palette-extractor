@@ -24,6 +24,9 @@ def compute_distance_between_palettes(
         w.float(),
     )
 
+    if params.get("sum_all_the_pairwise_distances"):
+        return pairwise_distances.sum()
+
     # The first score
     minimal_distances, indices = pairwise_distances.min(
         dim=len(pairwise_distances.size()) - 2,

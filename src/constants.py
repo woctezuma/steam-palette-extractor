@@ -24,4 +24,5 @@ def get_default_params() -> dict[str, float | int | bool]:
         "max_num_popular_app_ids": 1e5,
         "use_hsv": True,
         "change_coordinates": True,
+        "sum_all_the_pairwise_distances": False,
     }
