@@ -34,7 +34,7 @@ A benchmark of the parameters used for the palette distance is shown [on the Wik
   - In retrospect, in my code, the distance between palettes is assessed by:
     - a modification of the Hausdorff distance where the **sup and max** are replaced by a (weighted) **sum**,
     - **NB**: Using a sum or an average is equivalent if the number of colors in each palette, i.e. the cardinality of each set, is constant.
-    - **NB²**: The weights allow to take advantage of the **order** of colors in the palettes. If one of `exponent` and `factor` is equal 0, then the weights are all equal to 1, i.e. it is simply a sum.
+    - **NB²**: The weights allow to take advantage of the **order** of colors in the palettes. If one of `exponent` and `factor` is equal to 0, then the weights are all equal to 1, i.e. the weighted sum is simply a sum.
 - Articles:
   - [1] Pan, Qianqian, et al. [*Comparative Evaluation of Color Differences between Color Palettes*][paper-pan]. Color and Imaging Conference 2018.
   - [2] Kim, Suzi, et al. [*Dynamic Closest Color Warping to Sort and Compare Palettes*][paper-DCCW]. [SIGGRAPH][siggraph-DCCW] 2021. ([code][github-DCCW])
