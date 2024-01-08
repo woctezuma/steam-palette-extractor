@@ -26,7 +26,7 @@ A benchmark of the parameters used for the palette distance is shown [on the Wik
 - Compare palettes, i.e. ordered lists of a few colors:
   - Mean Pairwise Distance [1, 2]
   - Wikipedia: [Hausdorff distance][wiki-hausdorff] [2]
-  - Wikipedia: [Modified Hausdorff "distance" (MHD)][wiki-hausdorff-modified] [2] (in French):
+  - Wikipedia: [Modified Hausdorff "distance" (MHD)][wiki-hausdorff-modified] [2, 3] (in French):
     - where the sup is replaced by an average,
     - which is not actually a distance as it does not exhibit the triangle inequality property,
   - Minimum Color Difference [1, 2], which is a modification of the Hausdorff distance where the sup/max is replaced by an average,
@@ -34,6 +34,7 @@ A benchmark of the parameters used for the palette distance is shown [on the Wik
 - Articles:
   - [1] Pan, Qianqian, et al. [*Comparative evaluation of color differences between color palettes*][paper-pan]. Color and Imaging Conference 2018.
   - [2] Kim, Suzi, et al. [*Dynamic Closest Color Warping to Sort and Compare Palettes*][paper-DCCW]. SIGGRAPH 2021. ([code][github-DCCW])
+  - [3] Dubuisson, M-P., et al. [*A modified Hausdorff distance for object matching*][paper-mhd]. ICPR 1994.
 
 <!-- Definitions -->
 
@@ -53,3 +54,4 @@ A benchmark of the parameters used for the palette distance is shown [on the Wik
 [paper-pan]: <https://www.stephenwestland.co.uk/pdf/pan_westland_CIC_2018.pdf>
 [paper-DCCW]: <https://doi.org/10.1145/3450626.3459776>
 [github-DCCW]: <https://github.com/SuziKim/DCCW>
+[paper-mhd]: <https://doi.org/10.1109/ICPR.1994.576361>
