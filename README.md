@@ -18,7 +18,7 @@ A benchmark of the parameters used for the palette distance is shown [on the Wik
 - [`woctezuma/steam-popular-appids`][steam-popular-appids]: popular Steam appIDs,
 - [`woctezuma/steam-store-snapshots`][steam-store-snapshots]: a comprehensive list of appIDs downloaded in January 2021,
 - [Stack Overflow][stackoverflow]: different approaches to extract the palette of an image.
-- Kim, Suzi, and Sunghee Choi. [*Dynamic Closest Color Warping to Sort and Compare Palettes*][paper-DCCW]. SIGGRAPH 2021. ([code][github-DCCW])
+- Kim, Suzi, et al. [*Dynamic Closest Color Warping to Sort and Compare Palettes*][paper-DCCW]. SIGGRAPH 2021. ([code][github-DCCW])
 
 <!-- Definitions -->
 
