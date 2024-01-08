@@ -33,7 +33,7 @@ A benchmark of the parameters used for the palette distance is shown [on the Wik
   - In retrospect, in my code, the distance between palettes is assessed by a modification of the Hausdorff distance where the sup/max is replaced by a sum, or a weighted sum depending on the parameters.
 - Articles:
   - [1] Pan, Qianqian, et al. [*Comparative Evaluation of Color Differences between Color Palettes*][paper-pan]. Color and Imaging Conference 2018.
-  - [2] Kim, Suzi, et al. [*Dynamic Closest Color Warping to Sort and Compare Palettes*][paper-DCCW]. SIGGRAPH 2021. ([code][github-DCCW])
+  - [2] Kim, Suzi, et al. [*Dynamic Closest Color Warping to Sort and Compare Palettes*][paper-DCCW]. [SIGGRAPH][siggraph-DCCW] 2021. ([code][github-DCCW])
   - [3] Dubuisson, M-P., et al. [*A modified Hausdorff distance for object matching*][paper-mhd]. ICPR 1994.
 
 <!-- Definitions -->
@@ -53,5 +53,6 @@ A benchmark of the parameters used for the palette distance is shown [on the Wik
 [wiki-hausdorff-modified]: <https://fr.wikipedia.org/wiki/Distance_de_Hausdorff_modifi%C3%A9e>
 [paper-pan]: <https://www.stephenwestland.co.uk/pdf/pan_westland_CIC_2018.pdf>
 [paper-DCCW]: <https://doi.org/10.1145/3450626.3459776>
+[siggraph-DCCW]: <https://history.siggraph.org/learning/dynamic-closest-color-warping-to-sort-and-compare-palettes-by-kim-and-choi/>
 [github-DCCW]: <https://github.com/SuziKim/DCCW>
 [paper-mhd]: <https://doi.org/10.1109/ICPR.1994.576361>
