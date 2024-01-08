@@ -21,8 +21,8 @@ A benchmark of the parameters used for the palette distance is shown [on the Wik
 - Compare colors:
   - Wikipedia: [Red, Green, Blue (RGB)][wiki-rgb]
   - Wikipedia: [Hue, Saturation, Value (HSV)][wiki-hsv] **Caveat**: this is a cylindrical-coordinate representation!
-  - Wikipedia: [CIELAB color space (L*a*b*)][wiki-cielab]
-  - Wikipedia: [CIELUV color space (L*u*v*)][wiki-cieluv]
+  - Wikipedia: [CIELAB color space (L\*a\*b\*)][wiki-cielab]
+  - Wikipedia: [CIELUV color space (L\*u\*v\*)][wiki-cieluv]
 - Compare palettes, i.e. ordered lists of a few colors:
   - Mean Pairwise Distance [1, 2]
   - Wikipedia: [Hausdorff distance][wiki-hausdorff] [2]
