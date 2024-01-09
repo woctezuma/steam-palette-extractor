@@ -17,7 +17,7 @@ def get_app_ids(fname: str = APPID_FNAME) -> list[str]:
 
 
 def get_test_fnames(image_folder: str, file_ext: str = ".jpg", verbose=True):
-    test_fnames = sorted(Path(image_folder).glob(f"*{file_ext}"))
+    test_fnames = sorted(Path(image_folder).glob(f"*/*{file_ext}"))
     if verbose:
         print(f"#images = {len(test_fnames)}")
     return test_fnames
