@@ -15,7 +15,7 @@ def requires_color_space_transformation(params):
 
 
 def requires_change_of_coordinates(params):
-    return params["color_space"].startwith("linear")
+    return params["color_space"].startswith("linear")
 
 
 def prepare_image(path_or_url: str, params: dict, verbose: bool = True) -> torch.tensor:
