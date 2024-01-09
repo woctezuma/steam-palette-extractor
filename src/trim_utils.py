@@ -1,9 +1,11 @@
 def trim_popular_appids(popular_appids, params):
-    params["max_num_popular_app_ids"] = min(
-        len(popular_appids),
-        max(
-            0,
-            params["max_num_popular_app_ids"],
+    params["max_num_popular_app_ids"] = int(
+        min(
+            len(popular_appids),
+            max(
+                0,
+                params["max_num_popular_app_ids"],
+            ),
         ),
     )
 
