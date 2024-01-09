@@ -37,10 +37,13 @@ def my_objective(
     # Check whether we already evaluated the sampled parameters.
     # https://optuna.readthedocs.io/en/stable/faq.html#how-can-i-ignore-duplicated-samples
     states_to_consider = (TrialState.COMPLETE,)
-    trials_to_consider = trial.study.get_trials(
-        deepcopy=False,
-        states=states_to_consider,
-    )
+    try:
+        trials_to_consider = trial.study.get_trials(
+            deepcopy=False,
+            states=states_to_consider,
+        )
+    except AttributeError:
+        trials_to_consider = []
     for t in reversed(trials_to_consider):
         if trial.params == t.params:
             # Use the existing value as trial duplicated the parameters.
