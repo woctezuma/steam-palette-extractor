@@ -28,6 +28,7 @@ COLOR_SPACES = [
 PALETTE_DISTANCES = [
     "sum_pairwise_distances",
     "hausdorff_distance",
+    "modified_hausdorff_distance",
     "custom_hausdorff_distance",
 ]
 
