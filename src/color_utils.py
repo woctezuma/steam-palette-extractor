@@ -57,7 +57,7 @@ def to_color_space(rgb, output_color_space="rgb"):
         return ski.color.rgb2lab(rgb / 255)
     if output_color_space.endswith("luv"):
         return ski.color.rgb2luv(rgb / 255)
-    if output_color_space in ["hsv", "hsl"]:
+    if output_color_space.endswith("hsv"):
         return to_hsv(*rgb)
     return list(rgb)
 
