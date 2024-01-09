@@ -41,10 +41,11 @@ def display_results(
 ) -> None:
     for i, app_id in enumerate(
         most_similar_app_ids[:max_num_displayed_images],
-        start=1,
     ):
         distance = distances[indices[i]]
 
         path_or_url = get_image_url(app_id)
-        print(f"\t{i}) appID: {app_id} ; distance: {distance:.2f} ; url: {path_or_url}")
+        print(
+            f"\t{i+1}) appID: {app_id} ; distance: {distance:.2f} ; url: {path_or_url}",
+        )
         media.show_image(media.read_image(path_or_url), width=displayed_image_width)
