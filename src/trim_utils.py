@@ -1,5 +1,5 @@
 def trim_popular_appids(popular_appids, params):
-    params["max_num_popular_app_ids"] = int(
+    max_num_popular_app_ids = int(
         min(
             len(popular_appids),
             max(
@@ -9,7 +9,4 @@ def trim_popular_appids(popular_appids, params):
         ),
     )
 
-    max_num_popular_app_ids = params["max_num_popular_app_ids"]
-    test_app_ids = popular_appids[:max_num_popular_app_ids]
-
-    return test_app_ids, params
+    return popular_appids[:max_num_popular_app_ids]
