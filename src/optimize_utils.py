@@ -60,14 +60,14 @@ def process_every_gift(
             verbose=verbose,
         )
 
-        distance = compute_distance_between_palettes(
+        distances = compute_distance_between_palettes(
             reference_colors,
             palettes_subset,
             params,
         )
 
         most_similar_app_ids, indices = get_most_similar_app_ids(
-            distance,
+            distances,
             app_ids_subset,
             params["topk"],
         )
