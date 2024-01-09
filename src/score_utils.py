@@ -36,6 +36,10 @@ def compute_distance_between_palettes(
     minimal_distances_for_v, indices_for_v = pairwise_distances.min(
         dim=len(pairwise_distances.size()) - 1,
     )
+
+    if params["palette_distance"] == "hausdorff_distance":
+        return max(minimal_distances_for_w.max(), minimal_distances_for_v.max())
+
     score_for_w = to_score(minimal_distances_for_w, indices_for_w, params)
     score_for_v = to_score(minimal_distances_for_v, indices_for_v, params)
 
