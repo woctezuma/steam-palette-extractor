@@ -28,15 +28,15 @@ def compute_distance_between_palettes(
         return pairwise_distances.sum()
 
     # The first score
-    minimal_distances, indices = pairwise_distances.min(
+    minimal_distances_for_w, indices_for_w = pairwise_distances.min(
         dim=len(pairwise_distances.size()) - 2,
     )
-    score_for_w = to_score(minimal_distances, indices, params)
+    score_for_w = to_score(minimal_distances_for_w, indices_for_w, params)
 
     # The second score, in order to make the distance symmetrical
-    minimal_distances, indices = pairwise_distances.min(
+    minimal_distances_for_v, indices_for_v = pairwise_distances.min(
         dim=len(pairwise_distances.size()) - 1,
     )
-    score_for_v = to_score(minimal_distances, indices, params)
+    score_for_v = to_score(minimal_distances_for_v, indices_for_v, params)
 
     return score_for_w + score_for_v
