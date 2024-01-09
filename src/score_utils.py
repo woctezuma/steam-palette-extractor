@@ -24,7 +24,7 @@ def compute_distance_between_palettes(
         w.float(),
     )
 
-    if params.get("sum_all_the_pairwise_distances"):
+    if params["palette_distance"] == "sum_pairwise_distances":
         return pairwise_distances.sum()
 
     # The first score
