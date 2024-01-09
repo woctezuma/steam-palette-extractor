@@ -1,6 +1,7 @@
 from colorsys import rgb_to_hsv
 
 import mediapy as media
+import numpy as np
 import skimage as ski
 import torch
 from PIL import Image
@@ -71,10 +72,12 @@ def to_color_space_sequential(
     v_aggregated = None
     for dominant_colors in palette_iterator:
         v = torch.tensor(
-            [
-                to_color_space(rgb, output_color_space=output_color_space)
-                for rgb in dominant_colors
-            ],
+            np.array(
+                [
+                    to_color_space(rgb, output_color_space=output_color_space)
+                    for rgb in dominant_colors
+                ],
+            ),
         ).unsqueeze(dim=0)
 
         if v_aggregated is None:
