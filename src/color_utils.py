@@ -59,7 +59,7 @@ def to_color_space(rgb, output_color_space="rgb"):
         return ski.color.rgb2luv(rgb / 255)
     if output_color_space in ["hsv", "hsl"]:
         return to_hsv(*rgb)
-    return rgb
+    return list(rgb)
 
 
 def to_color_space_sequential(
