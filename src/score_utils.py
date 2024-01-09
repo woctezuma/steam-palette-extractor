@@ -25,7 +25,7 @@ def compute_distance_between_palettes(
     )
 
     if params["palette_distance"] == "sum_pairwise_distances":
-        return pairwise_distances.sum()
+        return pairwise_distances.sum(dim=[1, 2])
 
     # The first score
     minimal_distances_for_w, indices_for_w = pairwise_distances.min(
@@ -38,12 +38,21 @@ def compute_distance_between_palettes(
     )
 
     if params["palette_distance"] == "hausdorff_distance":
-        return max(minimal_distances_for_w.max(), minimal_distances_for_v.max())
+        return (
+            torch.stack(
+                (
+                    minimal_distances_for_w.max(dim=1).to_numpy(),
+                    minimal_distances_for_v.max(dim=1).to_numpy(),
+                ),
+            )
+            .max(dim=0)
+            .to_numpy()
+        )
 
     score_for_w = to_score(minimal_distances_for_w, indices_for_w, params)
     score_for_v = to_score(minimal_distances_for_v, indices_for_v, params)
 
     if params["palette_distance"] == "modified_hausdorff_distance":
-        return max(score_for_w, score_for_v)
+        return torch.stack((score_for_w, score_for_v)).max(dim=0).to_numpy()
 
     return score_for_w + score_for_v
