@@ -21,6 +21,18 @@ def my_objective(
 ) -> float:
     if params is None:
         params = get_default_params()
+    params["exponent_source"] = trial.suggest_float(
+        "exponent_source",
+        0.0,
+        1.0,
+        step=0.01,
+    )
+    params["factor_source"] = trial.suggest_float(
+        "factor_source",
+        0.0,
+        1.0,
+        step=0.01,
+    )
     params["exponent_target"] = trial.suggest_float(
         "exponent_target",
         0.0,
@@ -65,9 +77,9 @@ def my_objective(
     score = ranks.min() + ranks.median() + ranks.mean() + ranks.max()
 
     print(
-        "| Exponent T	| Factor T	| Min Rank 	| Median Rank 	| Mean Rank  	| Max Rank 	| Score (sum) 	|\n"
-        "|----------	|--------	|----------	|-------------	|------------	|----------	|-------------	|\n"
-        f"| {params['exponent_target']:.2f}     	| {params['factor_target']:.2f}     	| {ranks.min():.0f}     	| {ranks.median():.0f}     	| {ranks.mean():.2f}     	| {ranks.max():.0f}     	| {score:.2f}     	|\n"
+        "| Exponent S	| Factor S	| Exponent T	| Factor T	| Min Rank 	| Median Rank 	| Mean Rank  	| Max Rank 	| Score (sum) 	|\n"
+        "|----------	|--------	|----------	|--------	|----------	|-------------	|------------	|----------	|-------------	|\n"
+        f"| {params['exponent_source']:.2f}     	| {params['factor_source']:.2f}     	| {params['exponent_target']:.2f}     	| {params['factor_target']:.2f}     	| {ranks.min():.0f}     	| {ranks.median():.0f}     	| {ranks.mean():.2f}     	| {ranks.max():.0f}     	| {score:.2f}     	|\n"
         "|          	|        	|          	|             	|            	|          	|             	|",
     )
 
