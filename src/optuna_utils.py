@@ -11,6 +11,20 @@ from src.optimize_utils import process_every_gift
 NUM_TRIALS = 100
 TIMEOUT_IN_SECONDS = 3600
 
+COLUMN_SEPARATOR = "|"
+LINE_BREAK = "\n"
+
+
+def make_dummy_row(dummy_string, num_columns):
+    return (
+        f"{COLUMN_SEPARATOR}{dummy_string}" * num_columns
+        + f"{COLUMN_SEPARATOR}{LINE_BREAK}"
+    )
+
+
+def count_columns(string):
+    return string.count(COLUMN_SEPARATOR) - 1
+
 
 def my_objective(
     trial,
@@ -76,11 +90,24 @@ def my_objective(
     ranks = torch.Tensor([r for r in gift_ranks if r is not None])
     score = ranks.min() + ranks.median() + ranks.mean() + ranks.max()
 
+    param_str = "| Exponent S   | Factor S      | Exponent T    | Factor T  "
+    rank_str = "| Min Rank     | Median Rank   | Mean Rank     | Max Rank  "
+    score_str = "| Score (sum)  |\n"
+    header_row = f"{param_str}{rank_str}{score_str}"
+
+    param_values_str = f"| {params['exponent_source']:.2f}  | {params['factor_source']:.2f} | {params['exponent_target']:.2f}   | {params['factor_target']:.2f} "
+    rank_values_str = f"| {ranks.min():.0f}    | {ranks.median():.0f}  | {ranks.mean():.2f}    | {ranks.max():.0f} "
+    score_values_str = f"| {score:.2f}  |\n"
+    values_row = f"{param_values_str}{rank_values_str}{score_values_str}"
+
+    num_columns = count_columns(header_row)
+
     print(
-        "| Exponent S	| Factor S	| Exponent T	| Factor T	| Min Rank 	| Median Rank 	| Mean Rank  	| Max Rank 	| Score (sum) 	|\n"
-        "|----------	|--------	|----------	|--------	|----------	|-------------	|------------	|----------	|-------------	|\n"
-        f"| {params['exponent_source']:.2f}     	| {params['factor_source']:.2f}     	| {params['exponent_target']:.2f}     	| {params['factor_target']:.2f}     	| {ranks.min():.0f}     	| {ranks.median():.0f}     	| {ranks.mean():.2f}     	| {ranks.max():.0f}     	| {score:.2f}     	|\n"
-        "|          	|        	|          	|             	|            	|          	|             	|",
+        header_row,
+        make_dummy_row("-", num_columns),
+        values_row,
+        make_dummy_row(" ", num_columns),
+        sep="",
     )
 
     print("\n---\n")
