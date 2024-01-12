@@ -10,10 +10,7 @@ def to_score(
     indices: torch.tensor,
     params: dict,
 ) -> torch.tensor:
-    factor = params["factor"]
-    exponent = params["exponent"]
-
-    rank_weights = to_weights(indices, factor, exponent)
+    rank_weights = to_weights(indices, params["factor"], params["exponent"])
     score = minimal_distances * rank_weights
     return score.sum(dim=1) if len(score.size()) > 1 else score.sum()
 
