@@ -10,7 +10,8 @@ def to_score(
     indices: torch.tensor,
     params: dict,
 ) -> torch.tensor:
-    indices_source = torch.tensor(range(len(indices)))
+    num_columns = len(indices[0])
+    indices_source = torch.tensor(range(num_columns))
     rank_weights_source = to_weights(
         indices_source,
         params["factor_source"],
