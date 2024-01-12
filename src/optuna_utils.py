@@ -65,7 +65,7 @@ def my_objective(
     score = ranks.min() + ranks.median() + ranks.mean() + ranks.max()
 
     print(
-        "| Exponent 	| Factor 	| Min Rank 	| Median Rank 	| Mean Rank  	| Max Rank 	| Score (sum) 	|\n"
+        "| Exponent T	| Factor T	| Min Rank 	| Median Rank 	| Mean Rank  	| Max Rank 	| Score (sum) 	|\n"
         "|----------	|--------	|----------	|-------------	|------------	|----------	|-------------	|\n"
         f"| {params['exponent']:.2f}     	| {params['factor']:.2f}     	| {ranks.min():.0f}     	| {ranks.median():.0f}     	| {ranks.mean():.2f}     	| {ranks.max():.0f}     	| {score:.2f}     	|\n"
         "|          	|        	|          	|             	|            	|          	|             	|",
