@@ -35,20 +35,8 @@ def my_objective(
 ) -> float:
     if params is None:
         params = get_default_params()
-    params["exponent_source"] = trial.suggest_float(
-        "exponent_source",
-        0.0,
-        1.0,
-        step=0.01,
-    )
     params["factor_source"] = trial.suggest_float(
         "factor_source",
-        0.0,
-        1.0,
-        step=0.01,
-    )
-    params["exponent_target"] = trial.suggest_float(
-        "exponent_target",
         0.0,
         1.0,
         step=0.01,
