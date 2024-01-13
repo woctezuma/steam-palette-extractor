@@ -23,6 +23,13 @@ def to_score(
         params["exponent_target"],
     )
     score = minimal_distances * rank_weights_source * rank_weights_target
+    delta_indices = (indices - indices_source) / (num_columns - 1)
+    ramp_weights = to_weights(
+        delta_indices,
+        params["factor_ramp"],
+        params["exponent_ramp"],
+    )
+    score *= ramp_weights
     return score.sum(dim=1) if len(score.size()) > 1 else score.sum()
 
 
