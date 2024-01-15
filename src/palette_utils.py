@@ -18,17 +18,18 @@ def compute_min_of_weighted_color_distances(pairwise_distances, params, dim):
     num_elements = pairwise_distances.size()[dim]
     indices_target = torch.tensor(range(num_elements))
 
-    num_dimensions = len(pairwise_distances.size())
-    unsqueeze_dim = (num_dimensions + dim - 1) % num_dimensions
     target_weights = to_weights_target(
         indices_target,
         params,
         num_elements,
-    ).unsqueeze(
-        unsqueeze_dim,
     )
 
-    weighted_distances = pairwise_distances * target_weights
+    num_dimensions = len(pairwise_distances.size())
+    unsqueeze_dim = (num_dimensions + dim - 1) % num_dimensions
+
+    weighted_distances = pairwise_distances * target_weights.unsqueeze(
+        unsqueeze_dim,
+    )
 
     return weighted_distances.min(
         dim=dim,
