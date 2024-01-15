@@ -37,20 +37,20 @@ def my_objective(
         params = get_default_params()
     params["factor_ramp"] = trial.suggest_float(
         "factor_ramp",
-        -2.0,
-        2.0,
+        -1.0,
+        1.0,
         step=0.01,
     )
     params["factor_source"] = trial.suggest_float(
         "factor_source",
-        -0.5,
-        0.5,
+        -1.0,
+        1.0,
         step=0.01,
     )
     params["factor_target"] = trial.suggest_float(
         "factor_target",
-        -0.5,
-        0.5,
+        -1.0,
+        1.0,
         step=0.01,
     )
 
