@@ -62,7 +62,13 @@ def to_score(
     )
     score *= rank_weights_target
 
-    ramp_weights = to_weights_delta(indices, indices_source, params, num_columns)
+    ramp_weights = to_weights_delta(
+        indices,
+        indices_source,
+        params,
+        num_columns,
+        threshold=0,
+    )
     score *= ramp_weights
     return score.sum(dim=1) if len(score.size()) > 1 else score.sum()
 
