@@ -48,12 +48,12 @@ def compute_distance_between_palettes(
 
     # The first score
     minimal_distances_for_w, indices_for_w = pairwise_distances.min(
-        dim=len(pairwise_distances.size()) - 2,
+        dim=-2,
     )
 
     # The second score, in order to make the distance symmetrical
     minimal_distances_for_v, indices_for_v = pairwise_distances.min(
-        dim=len(pairwise_distances.size()) - 1,
+        dim=-1,
     )
 
     if params["palette_distance"] == "hausdorff_distance":
