@@ -5,11 +5,11 @@ from src.score_utils import to_score, to_weights
 
 def compute_min_of_weighted_color_distances(pairwise_distances, params, dim):
     num_elements = pairwise_distances.size()[dim]
-    target_indices = torch.tensor(range(num_elements))
+    indices_target = torch.tensor(range(num_elements))
 
     num_dimensions = len(pairwise_distances.size())
     unsqueeze_dim = (num_dimensions + dim - 1) % num_dimensions
-    target_weights = to_weights(target_indices, params["factor_target"]).unsqueeze(
+    target_weights = to_weights(indices_target, params["factor_target"]).unsqueeze(
         unsqueeze_dim,
     )
 
