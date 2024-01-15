@@ -1,6 +1,7 @@
 import torch
 
-from src.score_utils import to_score, to_weights
+from src.score_utils import to_score
+from src.weight_utils import to_weights
 
 
 def compute_min_of_weighted_color_distances(pairwise_distances, params, dim):
