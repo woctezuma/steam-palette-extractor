@@ -1,6 +1,18 @@
 import torch
 
 
+def normalize_indices(indices, min_value=None, max_value=None):
+    if min_value is None:
+        min_value = indices.min()
+    if max_value is None:
+        max_value = indices.max()
+    return (indices - min_value) / (max_value - min_value)
+
+
+def normalize_weights(weights):
+    return weights / torch.linalg.vector_norm(weights, ord=0, dim=-1, keepdim=True)
+
+
 def to_weights(indices, factor, exponent):
     return (1 + factor * indices) ** exponent
 
