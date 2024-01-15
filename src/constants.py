@@ -37,6 +37,7 @@ def get_default_params() -> dict[str, float | int | str]:
     return {
         "exponent_ramp": 1.0,
         "factor_ramp": 1.0,
+        "threshold_ramp": 0.0,
         "exponent_source": 1.0,
         "factor_source": 1.0,
         "exponent_target": 1.0,

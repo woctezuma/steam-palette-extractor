@@ -20,7 +20,7 @@ def to_weights_source(indices_source, params, num_columns):
     return normalize_weights(rank_weights_source)
 
 
-def to_weights_delta(indices_target, indices_source, params, num_columns, threshold=0):
+def to_weights_delta(indices_target, indices_source, params, num_columns):
     delta_indices = indices_target - indices_source
 
     # The following normalized values lie between -1 and 1.
@@ -28,7 +28,9 @@ def to_weights_delta(indices_target, indices_source, params, num_columns, thresh
 
     # Threshold, to ensure that there is no penalty when the matched color has
     # a lower index in the target palette than the color in the source palette.
-    normalized_delta_indices[normalized_delta_indices < threshold] = 0
+    threshold = params.get("threshold_ramp")
+    if threshold is not None:
+        normalized_delta_indices[normalized_delta_indices < threshold] = 0
 
     return to_weights(
         normalized_delta_indices,
@@ -59,7 +61,6 @@ def to_score(
         indices_source,
         params,
         num_columns,
-        threshold=0,
     )
     score *= ramp_weights
     return score.sum(dim=1) if len(score.size()) > 1 else score.sum()
