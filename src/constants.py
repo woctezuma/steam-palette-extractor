@@ -35,12 +35,9 @@ PALETTE_DISTANCES = [
 
 def get_default_params() -> dict[str, float | int | str]:
     return {
-        "exponent_ramp": 1.0,
         "factor_ramp": 1.0,
         "threshold_ramp": 0.0,
-        "exponent_source": 1.0,
         "factor_source": 1.0,
-        "exponent_target": 1.0,
         "factor_target": 1.0,
         "topk": 0,
         "max_num_popular_app_ids": 1e5,

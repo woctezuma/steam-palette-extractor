@@ -5,8 +5,8 @@ def normalize_weights(weights):
     return weights / torch.linalg.vector_norm(weights, ord=0, dim=-1, keepdim=True)
 
 
-def to_weights(indices, factor, exponent):
-    return (1 + factor * indices) ** exponent
+def to_weights(indices, factor):
+    return torch.exp(factor * indices)
 
 
 def to_weights_source(indices_source, params, num_columns):
@@ -15,7 +15,6 @@ def to_weights_source(indices_source, params, num_columns):
     rank_weights_source = to_weights(
         normalized_indices_source,
         params["factor_source"],
-        params["exponent_source"],
     )
     return normalize_weights(rank_weights_source)
 
@@ -35,7 +34,6 @@ def to_weights_delta(indices_target, indices_source, params, num_columns):
     return to_weights(
         normalized_delta_indices,
         params["factor_ramp"],
-        params["exponent_ramp"],
     )
 
 
@@ -52,7 +50,6 @@ def to_score(
     rank_weights_target = to_weights(
         indices,
         params["factor_target"],
-        params["exponent_target"],
     )
     score *= rank_weights_target
 
