@@ -44,7 +44,7 @@ def to_weights_delta(indices_target, indices_source, params, num_elements):
 
     # Threshold, to ensure that there is no penalty when the matched color has
     # a lower index in the target palette than the color in the source palette.
-    threshold = params.get("threshold_ramp")
+    threshold = params.get("low_threshold_ramp")
     if threshold is not None:
         normalized_delta_indices[normalized_delta_indices < threshold] = threshold
 

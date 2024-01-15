@@ -41,6 +41,6 @@ def get_default_params() -> dict[str, float | int | str]:
         "factor_target": 1.0,
         "max_num_popular_app_ids": 1e5,
         "palette_distance": "custom_hausdorff_distance",
-        "threshold_ramp": 0.0,
+        "low_threshold_ramp": 0.0,
         "topk": 0,
     }
