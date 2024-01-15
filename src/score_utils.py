@@ -24,11 +24,17 @@ def to_score(
 ) -> torch.tensor:
     num_columns = len(indices[0])
     indices_source = torch.tensor(range(num_columns))
+    indices_source = normalize_indices(
+        indices_source,
+        min_value=0,
+        max_value=num_columns - 1,
+    )
     rank_weights_source = to_weights(
         indices_source,
         params["factor_source"],
         params["exponent_source"],
     )
+    rank_weights_source = normalize_weights(rank_weights_source)
     rank_weights_target = to_weights(
         indices,
         params["factor_target"],
