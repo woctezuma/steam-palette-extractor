@@ -16,6 +16,7 @@ def to_weights(indices, factor):
 def to_weights_wrapper(indices, factor, num_elements):
     # The following normalized values lie between 0 and 1.
     normalized_indices = scale_indices(indices, num_elements)
+
     return to_weights(
         normalized_indices,
         factor,
