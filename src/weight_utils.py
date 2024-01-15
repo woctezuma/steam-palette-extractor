@@ -58,3 +58,21 @@ def to_weights_delta(indices_target, indices_source, params, num_elements):
         normalized_delta_indices,
         params["factor_ramp"],
     )
+
+
+def adjust_pairwise_distances(pairwise_distances, params):
+    num_rows = pairwise_distances.size()[-2]
+    num_columns = pairwise_distances.size()[-1]
+    num_elements = max(num_rows, num_columns)
+
+    indices_rows = torch.tensor(range(num_rows)).unsqueeze(1)
+    indices_columns = torch.tensor(range(num_columns)).unsqueeze(0)
+
+    ramp_weights = to_weights_delta(
+        indices_rows,
+        indices_columns,
+        params,
+        num_elements,
+    )
+
+    return ramp_weights * pairwise_distances

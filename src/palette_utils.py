@@ -1,7 +1,7 @@
 import torch
 
 from src.score_utils import to_score
-from src.weight_utils import to_weights_target
+from src.weight_utils import adjust_pairwise_distances, to_weights_target
 
 
 def compute_min_of_weighted_color_distances(pairwise_distances, params, dim):
@@ -38,6 +38,8 @@ def compute_distance_between_palettes(
 
     if params["palette_distance"] == "sum_pairwise_distances":
         return pairwise_distances.sum(dim=[1, 2])
+
+    pairwise_distances = adjust_pairwise_distances(pairwise_distances, params)
 
     # The first score
     minimal_distances_for_w, indices_for_w = compute_min_of_weighted_color_distances(
