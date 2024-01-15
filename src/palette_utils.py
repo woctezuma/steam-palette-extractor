@@ -28,7 +28,9 @@ def compute_min_of_weighted_color_distances(pairwise_distances, params, dim):
         unsqueeze_dim,
     )
 
-    return (pairwise_distances * target_weights).min(
+    weighted_distances = pairwise_distances * target_weights
+
+    return weighted_distances.min(
         dim=dim,
     )
 
