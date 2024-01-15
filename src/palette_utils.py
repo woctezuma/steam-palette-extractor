@@ -39,7 +39,8 @@ def compute_distance_between_palettes(
     if params["palette_distance"] == "sum_pairwise_distances":
         return pairwise_distances.sum(dim=[1, 2])
 
-    pairwise_distances = adjust_pairwise_distances(pairwise_distances, params)
+    if params.get("apply_ramp_in_color_distance"):
+        pairwise_distances = adjust_pairwise_distances(pairwise_distances, params)
 
     # The first score
     minimal_distances_for_w, indices_for_w = compute_min_of_weighted_color_distances(

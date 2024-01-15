@@ -12,11 +12,12 @@ def to_score(
     indices_source = torch.tensor(range(num_columns))
     rank_weights_source = to_weights_source(indices_source, params, num_columns)
     score = minimal_distances * rank_weights_source
-    ramp_weights = to_weights_delta(
-        indices,
-        indices_source,
-        params,
-        num_columns,
-    )
-    score *= ramp_weights
+    if params.get("apply_ramp_in_palette_distance"):
+        ramp_weights = to_weights_delta(
+            indices,
+            indices_source,
+            params,
+            num_columns,
+        )
+        score *= ramp_weights
     return score.sum(dim=1) if len(score.size()) > 1 else score.sum()
