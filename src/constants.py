@@ -35,12 +35,12 @@ PALETTE_DISTANCES = [
 
 def get_default_params() -> dict[str, float | int | str]:
     return {
+        "color_space": "linear_hsv",
         "factor_ramp": 1.0,
-        "threshold_ramp": 0.0,
         "factor_source": 1.0,
         "factor_target": 1.0,
-        "topk": 0,
         "max_num_popular_app_ids": 1e5,
-        "color_space": "linear_hsv",
         "palette_distance": "custom_hausdorff_distance",
+        "threshold_ramp": 0.0,
+        "topk": 0,
     }
