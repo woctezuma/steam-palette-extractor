@@ -1,6 +1,21 @@
 import torch
 
-from src.score_utils import to_score
+from src.score_utils import to_score, to_weights
+
+
+def compute_min_of_weighted_color_distances(pairwise_distances, params, dim):
+    num_elements = pairwise_distances.size()[dim]
+    target_indices = torch.tensor(range(num_elements))
+
+    num_dimensions = len(pairwise_distances.size())
+    unsqueeze_dim = (num_dimensions + dim - 1) % num_dimensions
+    target_weights = to_weights(target_indices, params["factor_target"]).unsqueeze(
+        unsqueeze_dim,
+    )
+
+    return (pairwise_distances * target_weights).min(
+        dim=dim,
+    )
 
 
 def compute_distance_between_palettes(
@@ -17,12 +32,16 @@ def compute_distance_between_palettes(
         return pairwise_distances.sum(dim=[1, 2])
 
     # The first score
-    minimal_distances_for_w, indices_for_w = pairwise_distances.min(
+    minimal_distances_for_w, indices_for_w = compute_min_of_weighted_color_distances(
+        pairwise_distances,
+        params,
         dim=-2,
     )
 
     # The second score, in order to make the distance symmetrical
-    minimal_distances_for_v, indices_for_v = pairwise_distances.min(
+    minimal_distances_for_v, indices_for_v = compute_min_of_weighted_color_distances(
+        pairwise_distances,
+        params,
         dim=-1,
     )
 

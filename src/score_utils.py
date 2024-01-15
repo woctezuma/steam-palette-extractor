@@ -46,13 +46,6 @@ def to_score(
     indices_source = torch.tensor(range(num_columns))
     rank_weights_source = to_weights_source(indices_source, params, num_columns)
     score = minimal_distances * rank_weights_source
-
-    rank_weights_target = to_weights(
-        indices,
-        params["factor_target"],
-    )
-    score *= rank_weights_target
-
     ramp_weights = to_weights_delta(
         indices,
         indices_source,
