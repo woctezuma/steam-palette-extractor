@@ -17,13 +17,8 @@ def to_weights(indices, factor, exponent):
     return (1 + factor * indices) ** exponent
 
 
-def to_score(
-    minimal_distances: torch.tensor,
-    indices: torch.tensor,
-    params: dict,
-) -> torch.tensor:
-    num_columns = len(indices[0])
-    indices_source = torch.tensor(range(num_columns))
+def to_weights_source(indices_source, params):
+    num_columns = len(indices_source)
     indices_source = normalize_indices(
         indices_source,
         min_value=0,
@@ -34,7 +29,17 @@ def to_score(
         params["factor_source"],
         params["exponent_source"],
     )
-    rank_weights_source = normalize_weights(rank_weights_source)
+    return normalize_weights(rank_weights_source)
+
+
+def to_score(
+    minimal_distances: torch.tensor,
+    indices: torch.tensor,
+    params: dict,
+) -> torch.tensor:
+    num_columns = len(indices[0])
+    indices_source = torch.tensor(range(num_columns))
+    rank_weights_source = to_weights_source(indices_source, params)
     rank_weights_target = to_weights(
         indices,
         params["factor_target"],
