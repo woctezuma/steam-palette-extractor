@@ -13,12 +13,20 @@ def to_weights(indices, factor):
     return torch.exp(factor * indices)
 
 
-def to_weights_source(indices_source, params, num_elements):
+def to_weights_wrapper(indices, factor, num_elements):
     # The following normalized values lie between 0 and 1.
-    normalized_indices_source = scale_indices(indices_source, num_elements)
-    rank_weights_source = to_weights(
-        normalized_indices_source,
+    normalized_indices = scale_indices(indices, num_elements)
+    return to_weights(
+        normalized_indices,
+        factor,
+    )
+
+
+def to_weights_source(indices_source, params, num_elements):
+    rank_weights_source = to_weights_wrapper(
+        indices_source,
         params["factor_source"],
+        num_elements,
     )
     return normalize_weights(rank_weights_source)
 
@@ -42,10 +50,4 @@ def to_weights_delta(indices_target, indices_source, params, num_elements):
 
 
 def to_weights_target(indices_target, params, num_elements):
-    # The following normalized values lie between 0 and 1.
-    normalized_indices_target = scale_indices(indices_target, num_elements)
-
-    return to_weights(
-        normalized_indices_target,
-        params["factor_target"],
-    )
+    return to_weights_wrapper(indices_target, params["factor_target"], num_elements)
