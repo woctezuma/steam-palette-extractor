@@ -22,6 +22,10 @@ def to_weights_wrapper(indices, factor, num_elements):
     )
 
 
+def to_weights_target(indices_target, params, num_elements):
+    return to_weights_wrapper(indices_target, params["factor_target"], num_elements)
+
+
 def to_weights_source(indices_source, params, num_elements):
     rank_weights_source = to_weights_wrapper(
         indices_source,
@@ -47,7 +51,3 @@ def to_weights_delta(indices_target, indices_source, params, num_elements):
         normalized_delta_indices,
         params["factor_ramp"],
     )
-
-
-def to_weights_target(indices_target, params, num_elements):
-    return to_weights_wrapper(indices_target, params["factor_target"], num_elements)
