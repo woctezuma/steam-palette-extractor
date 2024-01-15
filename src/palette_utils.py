@@ -4,17 +4,13 @@ from src.score_utils import to_score
 from src.weight_utils import to_weights
 
 
-def to_weights_target(indices_target, params, num_elements, unsqueeze_dim):
+def to_weights_target(indices_target, params, num_elements):
     # The following normalized values lie between 0 and 1.
     normalized_indices_target = indices_target / (num_elements - 1)
 
-    rank_weights_target = to_weights(
+    return to_weights(
         normalized_indices_target,
         params["factor_target"],
-    )
-
-    return rank_weights_target.unsqueeze(
-        unsqueeze_dim,
     )
 
 
@@ -28,6 +24,7 @@ def compute_min_of_weighted_color_distances(pairwise_distances, params, dim):
         indices_target,
         params,
         num_elements,
+    ).unsqueeze(
         unsqueeze_dim,
     )
 
