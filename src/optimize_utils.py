@@ -5,7 +5,7 @@ from src.distance_utils import (
     get_most_similar_app_ids,
 )
 from src.image_utils import prepare_image
-from src.score_utils import compute_distance_between_palettes
+from src.palette_utils import compute_distance_between_palettes
 from src.url_utils import from_gift_to_egs_url
 
 
