@@ -45,5 +45,7 @@ def get_default_params() -> dict[str, float | int | str]:
         "high_threshold_ramp": None,
         "apply_ramp_in_color_distance": True,
         "apply_ramp_in_palette_distance": True,
+        "apply_target_in_color_distance": True,
+        "apply_target_in_palette_distance": True,
         "topk": 0,
     }
