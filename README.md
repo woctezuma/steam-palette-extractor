@@ -9,6 +9,58 @@ This repository contains Python code to find the dominant / most common colors i
 Run [`extract_steam_palette.ipynb`][colab-notebook]
 [![Open In Colab][colab-badge]][colab-notebook]
 
+## Approach
+
+A palette is an ordered list of N colors.
+In our case, N is arbitrarily set to 8.
+
+We consider:
+- a source palette, typically the palette of the gift wrapping,
+- a database of target palettes, typically the palettes of every Steam game.
+
+### Match colors
+
+In order to match palettes, we first need to be able to match colors.
+
+Colors can be represented in the following spaces:
+- RGB,
+- HSV:
+  - raw,
+  - linearized,
+- CIE LAB,
+- CIE LUV.
+
+The distance between colors is the L2 norm in this space.
+
+It is possible to take into account:
+- the index of the color in the target palette,
+- the difference between the indices of the colors in the source and target palettes.
+
+The objective is to incentivize the matching to colors which are respetively:
+- predominant in the target palettes, i.e. with low indices,
+- at lease more predominant in the target than in the source palette, i.e. with lower indices.
+
+In the latter case, thresholds can be used in order not to distinguish between target colors which have an index lower than the color in the source palette.
+
+### Match palettes
+
+The distance between colors can be:
+- the Mean Pairwise Distance,
+- the Hausdorff distance,
+- a modified Hausdorff "distance",
+- a custom Hausdorff distance, similar to Minimum Color Difference.
+
+It is possible to take into account:
+- the index of the color in the source palette.
+
+The objective is to re-weigh the color distances in order to give more importance to the errors for colors which are predominant in the **source** palette.
+
+As with the matching of colors, it is possible to take into account:
+- the index of the color in the target palette,
+- the difference between the indices of the colors in the source and target palettes.
+
+Here, in contrast to what was done with the matching of colors, the idea is to penalize rather than incentivize.
+
 ## Results
 
 A benchmark of the parameters used for the palette distance is shown [on the Wiki][benchmark-wiki].
