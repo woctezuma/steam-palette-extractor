@@ -54,12 +54,15 @@ It is possible to take into account:
 - the index of the color in the source palette.
 
 The objective is to re-weigh the color distances in order to give more importance to the errors for colors which are predominant in the **source** palette.
+The weights can be normalized so that they sum to 1, as the idea is only to re-balance the terms in the error.
 
 As with the matching of colors, it is possible to take into account:
 - the index of the color in the target palette,
 - the difference between the indices of the colors in the source and target palettes.
 
 Here, in contrast to what was done with the matching of colors, the idea is to penalize rather than incentivize.
+
+As with the matching of colors, thresholds can be used for more subtle touches.
 
 ## Results
 
