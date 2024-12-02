@@ -1,8 +1,8 @@
 files: \.(py|txt|yaml|yml)$
-default_stages: [commit, manual]
+default_stages: [pre-commit, manual]
 repos:
   - repo: https://github.com/astral-sh/ruff-pre-commit
-    rev: v0.6.7
+    rev: v0.8.1
     hooks:
       - id: ruff
         args:
@@ -19,7 +19,7 @@ repos:
       - id: ruff-format
 
   - repo: https://github.com/pre-commit/pre-commit-hooks
-    rev: v4.6.0
+    rev: v5.0.0
     hooks:
       - id: requirements-txt-fixer
       - id: end-of-file-fixer
@@ -33,7 +33,7 @@ repos:
       stages: [manual]
 
   - repo: https://github.com/pre-commit/mirrors-mypy
-    rev: v1.11.2
+    rev: v1.13.0
     hooks:
     - id: mypy
       additional_dependencies: [types-requests]
