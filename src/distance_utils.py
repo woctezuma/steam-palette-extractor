@@ -15,10 +15,10 @@ def get_most_similar_app_ids(
 
 
 def get_ground_truth_rank(
-    ground_truth_app_id: None | int,
+    ground_truth_app_id: int | None,
     most_similar_app_ids: list[str],
     verbose=True,
-) -> None | int:
+) -> int | None:
     if ground_truth_app_id:
         try:
             rank = 1 + most_similar_app_ids.index(str(ground_truth_app_id))
@@ -39,7 +39,7 @@ def get_ground_truth_rank(
 
 
 def get_ground_truth_ranks(
-    ground_truth_app_ids: list[None | int],
+    ground_truth_app_ids: list[int | None],
     most_similar_app_ids: list[str],
     verbose=True,
 ) -> list[int]:
