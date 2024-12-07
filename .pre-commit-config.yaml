@@ -10,11 +10,11 @@ repos:
             --fix,
             --unsafe-fixes,
             --target-version,
-            "py312",
+            "py313",
             --select,
             "ALL",
             --ignore,
-            "ANN,D,E501,FBT001,FBT002,PLR0913,T201",
+            "ANN,D,E501,FBT001,FBT002,PLR0913,PLR0917,CPY001,T201",
           ]
       - id: ruff-format
 
