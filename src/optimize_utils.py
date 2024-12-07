@@ -66,7 +66,7 @@ def process_every_gift(
             params,
         )
 
-        most_similar_app_ids, indices = get_most_similar_app_ids(
+        most_similar_app_ids, _indices = get_most_similar_app_ids(
             distances,
             app_ids_subset,
             params["topk"],

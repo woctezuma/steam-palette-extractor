@@ -46,6 +46,6 @@ def display_results(
 
         path_or_url = get_image_url(app_id)
         print(
-            f"\t{i+1}) appID: {app_id} ; distance: {distance:.2f} ; url: {path_or_url}",
+            f"\t{i + 1}) appID: {app_id} ; distance: {distance:.2f} ; url: {path_or_url}",
         )
         media.show_image(media.read_image(path_or_url), width=displayed_image_width)
