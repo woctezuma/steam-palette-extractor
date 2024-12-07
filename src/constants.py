@@ -33,7 +33,7 @@ PALETTE_DISTANCES = [
 ]
 
 
-def get_default_params() -> dict[str, float | int | str]:
+def get_default_params() -> dict[str, float | int | str | None]:
     return {
         "color_space": "linear_hsv",
         "factor_ramp": 1.0,
