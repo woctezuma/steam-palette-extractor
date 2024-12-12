@@ -44,7 +44,7 @@ In the latter case, thresholds can be used in order not to distinguish between t
 
 ### Match palettes
 
-The distance between colors can be:
+The distance between palettes can be:
 - the Mean Pairwise Distance,
 - the Hausdorff distance,
 - a modified Hausdorff "distance",
