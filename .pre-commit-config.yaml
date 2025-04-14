@@ -2,7 +2,7 @@ files: \.(py|txt|yaml|yml)$
 default_stages: [pre-commit, manual]
 repos:
   - repo: https://github.com/astral-sh/ruff-pre-commit
-    rev: v0.11.2
+    rev: v0.11.5
     hooks:
       - id: ruff
         args:
